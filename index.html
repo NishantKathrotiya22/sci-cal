@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@14.6.0/lib/browser/math.min.js"></script>
+</head>
+
+<body>
+
+    <div class="calculator-container">
+        <div class="calculator">
+
+
+            <!-- Memory indicator -->
+            <div class="memory-display">
+                M: <span id="memoryValue">0</span>
+            </div>
+            <div class="display" id="display">0</div>
+
+            <div>
+                <button id="toggleAngleMode" class="btn">DEG</button>
+                <button id="feButton" class="btn">FE</button>
+                <button id="randButton" class="btn">Rand</button>
+
+
+
+            </div>
+            <div class="buttons">
+
+                <button id="mc">MC</button>
+                <button id="mr">MR</button>
+                <button id="mplus">M+</button>
+                <button id="mminus">M-</button>
+                <button id="ms">MS</button>
+
+                <button class="btn function funcHandle" id="sin">sin</button>
+                <button class="btn function funcHandle" id="cos">cos</button>
+                <button class="btn function funcHandle" id="tan">tan</button>
+                <button class="btn function funcHandle" id="cosec">csc</button>
+                <button class="btn function funcHandle" id="sec">sec</button>
+                <!-- <button class="btn function" id="cot">cot</button> -->
+
+
+
+                <!-- <button class="btn function" id="pi">2nd</button> -->
+                <button class="btn function" id="pi">π</button>
+                <button class="btn function" id="floor">floor</button>
+                <button class="btn function" id="ceil">ceil</button>
+                <button class="btn" id="clear">C</button>
+                <button class="btn" id="backspace">⌫</button>
+
+                <button class="btn function" id="square">x²</button>
+                <button class="btn function" id="reciprocal">1/x</button>
+                <button class="btn function" id="abs">|x|</button>
+                <button class="btn function" id="exp">exp</button>
+                <button class="btn operator">%</button>
+
+                <!-- Row 2  -->
+                <button class="btn function" id="sqrt">2√x</button>
+                <button class="btn" id="open-bracket">(</button>
+                <button class="btn" id="close-paren">)</button>
+                <button class="btn function" id="factorial">x!</button>
+                <button class="btn operator">/</button>
+
+                <!-- Row 3  -->
+                <button class="btn operator" id="power" data-func="^">xʸ</button>
+                <button class="btn digit">7</button>
+                <button class="btn digit">8</button>
+                <button class="btn digit">9</button>
+                <button class="btn operator">*</button>
+
+
+                <!-- row 4 -->
+                <button class="btn function" id="tenPower">10^x</button>
+
+                <button class="btn digit">4</button>
+                <button class="btn digit">5</button>
+                <button class="btn digit">6</button>
+                <button class="btn operator">-</button>
+
+                <!-- Row 5 -->
+                <button class="btn function funcHandle" id="log" data-func="log10">log</button>
+                <button class="btn digit">1</button>
+                <button class="btn digit">2</button>
+                <button class="btn digit">3</button>
+                <button class="btn operator">+</button>
+
+
+                <!-- Row 6 -->
+                <button class="btn function funcHandle" id="ln" data-func="log">ln</button>
+                <button class="btn" id="toggle-sign">+/-</button>
+                <button class="btn digit">0</button>
+                <button class="btn" id="dot">.</button>
+                <button class="btn equal" id="equals">=</button>
+
+
+
+            </div>
+        </div>
+        <div class="history-panel">
+            <h3>History</h3>
+            <ul id="historyList"></ul>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@14.6.0/lib/browser/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.0/math.js"></script>
+
+    <script src="nishant.js "></script>
+    <!-- <script src="script.js"></script> -->
+</body>
+
+</html>
