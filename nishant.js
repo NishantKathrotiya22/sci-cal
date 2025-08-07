@@ -507,6 +507,80 @@ class Calculator {
     }
   }
 
+  memoryDisplay() {
+    this.memoryElement.innerText = this.memory;
+  }
+
+  memoryStore(e) {
+    e.preventDefault();
+
+    //Evalute If there is an Expression than store it
+    this.evaluateHandler(e);
+
+    // Gaurd to Protect from adding Error ro MEmory
+    if (this.frozen) return;
+
+    //now take the value From display and store it
+    //Clear The Screen And update memory Display
+    this.memory = this.state.display;
+    this.memoryDisplay();
+    this.state.display = "0";
+    this.state.result = null;
+    this.state.lastAction = "operator";
+    this.updateDisplay(e);
+  }
+
+  memoryClear(e) {
+    e.preventDefault();
+    this.memory = "0";
+    this.memoryDisplay();
+  }
+
+  memoryAdd(e) {
+    e.preventDefault();
+    //Evalute Expression
+    if (this.memory == "0") return;
+    this.evaluateHandler(e);
+
+    //Check if error than Do Nothing
+    if (this.frozen) return;
+    //If Executed Than add Memory Value and re execute
+    this.state.display = this.state.display + `+${this.memory}`;
+    this.evaluateHandler(e);
+  }
+
+  memorySub(e) {
+    e.preventDefault();
+
+    //Evalute Expression
+    if (this.memory == "0") return;
+    this.evaluateHandler(e);
+
+    //Check if error than Do Nothing
+    if (this.frozen) return;
+
+    //If Executed Than add Memory Value and re execute
+    this.state.display = this.state.display + `-${this.memory}`;
+    this.evaluateHandler(e);
+  }
+
+  memoryRecall(e) {
+    e.preventDefault();
+    if (this.frozen || this.memory == "0") return;
+
+    //Check if it is 0 than replace and return
+    if (this.state.display == "0" || this.state.display == this.memory) {
+      this.state.display = this.memory;
+      this.updateDisplay(e);
+      return;
+    }
+
+    //Now Check if last Char is Number than add it to Multiplcation else Direct
+    this.addMultiplicationIfNeeded(e);
+    this.state.display = this.state.display + this.memory;
+    this.updateDisplay(e);
+  }
+
   // Register all event handlers
   init() {
     // Group handlers by type for better organization
@@ -531,6 +605,11 @@ class Calculator {
         { id: "factorial", handler: this.factorialHandler },
         { id: "toggleAngleMode", handler: this.toggleAngle },
         { id: "randButton", handler: this.randomNumberHandler },
+        { id: "ms", handler: this.memoryStore },
+        { id: "mc", handler: this.memoryClear },
+        { id: "mr", handler: this.memoryRecall },
+        { id: "mplus", handler: this.memoryAdd },
+        { id: "minus", handler: this.memorySub },
       ],
 
       // Function buttons that evaluate expressions
@@ -576,26 +655,3 @@ class Calculator {
 
 // Instantiate calculator
 const calculator = new Calculator();
-
-// What we are Gonna Do!
-// we'll create SeprateHandler For all than bind it at EventHandler for Each
-// We can Create Map as Well so Dirctly Run and pass BAsed on ID or Class name of Element
-// But i'll Go With ONe By one at init()
-
-// First Combine all the Digits and operator and add Simple Evenelistner that append The Value after the 0
-// than we go with Evalution function That Evalute first and improve to handle EdgeCase
-
-// Simple Digit
-// 1. Replace the value at start as well as after result (for Number)
-
-// Simple Operator (+,-,*,/)
-// 1. append Dirct after 0 if it is start
-// 2. append Direct after answer
-// 3. if one after other comes than replace
-// 4. allow after '(' [-] Special Ability to get negative Value
-
-// . Btn
-// 1. Append after 0 at at start
-// 2. reset value if clicked after .
-// 3. Check First if alredy containe in one Calue than not allow
-// 3.1 Like find first value after operator and chek if it containe than retrun
